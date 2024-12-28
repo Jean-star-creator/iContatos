@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:gravity="center_vertical">
+
+                <ImageButton
+                    android:id="@+id/closeButton"
+                    android:background="@color/transparent"
+                    android:src="@drawable/ic_close"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"/>
+
+                <TextView
+                    android:id="@+id/editButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/editar"
+                    android:gravity="end"
+                    android:layout_weight="1"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"/>
+
+                <ImageButton
+                    android:id="@+id/buttonDelete"
+                    android:background="@color/transparent"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:src="@drawable/ic_trash"/>
+
+             </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:cardCornerRadius="100dp">
+            <ImageView
+                android:id="@+id/contactImage"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_launcher_background"/>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+            android:id="@+id/contactName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/nome_do_contato_completo"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+            <TextView
+            android:id="@+id/contactRelationship"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:text="Relacionamento"
+            android:gravity="center"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="20dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="horizontal">
+
+                <com.example.modulo3projetoicontatos.ActionButton
+                android:id="@+id/buttonCall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTitle="@string/ligar"
+                app:buttonIcon="@drawable/ic_call"/>
+
+                <com.example.modulo3projetoicontatos.ActionButton
+                android:id="@+id/buttonInstagram"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTitle="@string/instagram"
+                app:buttonIcon="@drawable/ic_camera"/>
+
+                <com.example.modulo3projetoicontatos.ActionButton
+                android:id="@+id/buttonMail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:buttonTitle="@string/mail"
+                app:buttonIcon="@drawable/ic_mail"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+        <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        style="@style/TopRoundedCardView">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:orientation="vertical">
+
+                    <com.example.modulo3projetoicontatos.InfoContainer
+                        android:id="@+id/infoPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:infoTitle="Telefone"
+                        app:infoValue="11999349493"
+                        app:infoIcon="@drawable/ic_call"/>
+
+                    <com.example.modulo3projetoicontatos.InfoContainer
+                        android:id="@+id/infoMail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:infoTitle="Mail"
+                        app:infoValue="username@mail.com"
+                        app:infoIcon="@drawable/ic_mail"/>
+
+
+                    <com.example.modulo3projetoicontatos.InfoContainer
+                        android:id="@+id/infoInstagram"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:infoTitle="Instagram"
+                        app:infoValue="username"
+                        app:infoIcon="@drawable/ic_camera"/>
+
+                    <com.example.modulo3projetoicontatos.InfoContainer
+                        android:id="@+id/infoFacebook"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:infoTitle="Facebook"
+                        app:infoValue="username"
+                        app:infoIcon="@drawable/ic_facebook"/>
+
+
+                </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+</ScrollView>
+
+    <!-- O "android:background="@color/transparent" cria cor transparente pra fazer o ícone do trash aparecer-->

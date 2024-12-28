@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Modulo3ProjetoiContatos</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome1_title">Gerencie seus contatos e seu próprio perfil utilizando o prático iContatos</string>
+    <string name="welcome2_title">Obrigado por escolher o app icontatos. Clique no \'Iniciar\' e comece a usar esse incível app</string>
+    <string name="iniciar">Iniciar</string>
+    <string name="contatos">Contatos</string>
+    <string name="perfil">Perfil</string>
+    <string name="profile_fragment">Profile Fragment</string>
+    <string name="contacts_fragment">Contacts Fragment</string>
+    <string name="query_hint">Procurar por...</string>
+    <string name="editar">Editar</string>
+    <string name="ligar">Ligar</string>
+    <string name="instagram">Instagram</string>
+    <string name="mail">Mail</string>
+    <string name="nome_do_contato_completo">Nome do Contato Completo</string>
+
+</resources>
