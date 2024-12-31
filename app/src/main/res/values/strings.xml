@@ -14,5 +14,8 @@
     <string name="instagram">Instagram</string>
     <string name="mail">Mail</string>
     <string name="nome_do_contato_completo">Nome do Contato Completo</string>
+    <string name="campos_obrigatorios">*Campos Obrigatórios</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="confirmar">Confirmar</string>
 
 </resources>

@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#F9F0F4">
+
+    <!-- Title and Mandatory Fields indicator -->
+    <TextView
+        android:id="@+id/screenTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Editar Contato"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="*Campos Obrigatórios"
+        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray"
+        android:layout_marginBottom="16dp"/>
+
+
+    <!-- Profile Icon -->
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp">
+
+        <View
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/circle_shape"
+            android:backgroundTint="#F0D8E3"
+            />
+
+        <ImageView
+            android:id="@+id/contactImage"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_person"
+            app:tint="@android:color/black"
+            />
+
+
+    </FrameLayout>
+
+    <!-- Name Input -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/rounded_rectangle"
+        android:padding="8dp"
+        android:layout_marginBottom="8dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_person"
+            android:layout_marginEnd="8dp"
+            app:tint="@android:color/darker_gray"
+            android:layout_gravity="center_vertical"
+
+            />
+        <EditText
+            android:id="@+id/contactNameEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Nome*"
+            android:inputType="textPersonName"
+            android:textColor="@android:color/black"
+            android:background="@null"
+            android:layout_gravity="center_vertical"
+
+            />
+    </LinearLayout>
+
+    <!-- Phone Input -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/rounded_rectangle"
+        android:padding="8dp"
+        android:layout_marginBottom="8dp">
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_call"
+            android:layout_marginEnd="8dp"
+            app:tint="@android:color/darker_gray"
+            android:layout_gravity="center_vertical"
+            />
+        <EditText
+            android:id="@+id/contactPhoneEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Telefone*"
+            android:inputType="phone"
+            android:textColor="@android:color/black"
+            android:background="@null"
+            android:layout_gravity="center_vertical"
+
+            />
+
+
+    </LinearLayout>
+
+    <!-- Email Input -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/rounded_rectangle"
+        android:padding="8dp"
+        android:layout_marginBottom="8dp">
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_mail"
+            android:layout_marginEnd="8dp"
+            app:tint="@android:color/darker_gray"
+            android:layout_gravity="center_vertical"
+            />
+        <EditText
+            android:id="@+id/contactMailEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Email*"
+            android:inputType="textEmailAddress"
+            android:textColor="@android:color/black"
+            android:background="@null"
+            android:layout_gravity="center_vertical"
+            />
+
+    </LinearLayout>
+
+
+    <!-- Instagram Input -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/rounded_rectangle"
+        android:padding="8dp"
+        android:layout_marginBottom="8dp">
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_camera"
+            android:layout_marginEnd="8dp"
+            app:tint="@android:color/darker_gray"
+            android:layout_gravity="center_vertical"
+            />
+
+        <EditText
+            android:id="@+id/contactInstagramEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Instagram"
+            android:inputType="text"
+            android:background="@null"
+            android:textColor="@android:color/black"
+            android:layout_gravity="center_vertical"
+            />
+
+    </LinearLayout>
+
+    <!-- Facebook Input -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/rounded_rectangle"
+        android:padding="8dp"
+        android:layout_marginBottom="8dp">
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_facebook"
+            android:layout_marginEnd="8dp"
+            app:tint="@android:color/darker_gray"
+            android:layout_gravity="center_vertical"
+            />
+        <EditText
+            android:id="@+id/contactFacebookEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Facebook"
+            android:inputType="text"
+            android:background="@null"
+            android:textColor="@android:color/black"
+            android:layout_gravity="center_vertical"
+            />
+    </LinearLayout>
+
+
+    <!-- Relationship Input (Dropdown) -->
+    <LinearLayout
+        android:id="@+id/contactRelationshipInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/rounded_rectangle"
+        android:padding="8dp"
+        android:layout_marginBottom="8dp">
+
+        <AutoCompleteTextView
+            android:id="@+id/relationshipTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Relacionamento"
+            android:textColor="@android:color/black"
+            android:layout_gravity="center_vertical"
+            android:background="@null"
+            android:completionThreshold="1"
+            />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_drop_down"
+            android:layout_gravity="center_vertical"
+            app:tint="@android:color/black"
+            />
+    </LinearLayout>
+
+
+
+    <!-- Bottom Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/buttonCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cancelar"
+            android:textColor="@android:color/black"
+            android:backgroundTint="#F9F0F4"
+            android:layout_marginEnd="16dp"
+            style="?android:attr/borderlessButtonStyle"
+            />
+
+        <Button
+            android:id="@+id/buttonConfirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/confirmar"
+            android:textColor="#4978B7"
+            android:backgroundTint="#F9F0F4"
+            style="?android:attr/borderlessButtonStyle"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
