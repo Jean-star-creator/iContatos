@@ -48,7 +48,7 @@ class AddEditContactDialogFragment(
 //            binding.contactNameEditText.setText( it.name )
 //
 //binding.relationshipTextView.setText
-        (it.relationship)
+//        (it.relationship)
 //
 //            // 2. Encontrar o índice do relacionamento no array
 //            val selectedPosition = relationshipOptions.indexOf(it.relationship)
@@ -71,9 +71,19 @@ class AddEditContactDialogFragment(
 
         Glide.with( this).load( contactToEdit?.contactImage ?: placeholder).into(binding.contactImage)
 
-        val relationshipTypes = resources.getStringArray(R.array.relationship)// cria um array no xml com os relacionamentos (pai, mãe, irmão, etc.)
-        val arrayAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, relationshipTypes)
-        binding.relationshipTextView.setAdapter(arrayAdapter)
+        var relationshipTypes  = emptyArray<String>()
+        try {
+            relationshipTypes = resources.getStringArray(R.array.relationship)// cria um array do xml com os relacionamentos (pai, mãe, irmão, etc.)
+            val arrayAdapter = ArrayAdapter(
+                requireContext(),
+                android.R.layout.simple_dropdown_item_1line ,
+                relationshipTypes
+            )
+            binding.relationshipTextView.setAdapter(arrayAdapter)
+        }catch (ex: Exception){
+            println("Erro na criação do relacionamento")
+            println(relationshipTypes)
+        }
 
         contactToEdit?.let {
             binding.screenTitle.text = "Editar Contato"

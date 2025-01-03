@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="relationship">
+        <item>Pai</item>
+        <item>Mãe</item>
+        <item>Amigo</item>
+        <item>Irmã</item>
+        <item>Irmão</item>
+    </string-array>
+</resources>
