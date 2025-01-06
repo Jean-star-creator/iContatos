@@ -97,12 +97,25 @@ class ContactsFragment : Fragment() {
 
         } )
 
+        binding.floatingAddButton.setOnClickListener{
+            (activity as? AddEditContactDialogFragment.OnInputListener)?.openAddContact(contacts.size) // modificadoPelaIA
+        }
+
         return binding.root
     }
+
 
     fun deleteContact(contactModel: ContactModel) {
         contacts.remove(contactModel)
         adapter.notifyDataSetChanged()
     }
+
+    // EU implementei para cria o novo contato
+    fun addToList(contactModel: ContactModel) { // modificadoPelaIA
+        contacts.add(contactModel)
+        adapter.notifyDataSetChanged() // modificadoPelaIA
+    }
+
+   
 
 }

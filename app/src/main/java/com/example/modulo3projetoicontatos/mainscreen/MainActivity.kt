@@ -17,7 +17,9 @@ import com.example.modulo3projetoicontatos.ContactModel
 import com.example.modulo3projetoicontatos.R
 import com.example.modulo3projetoicontatos.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() , ContactDetailDialogFragment.OnInputListener {
+class MainActivity : AppCompatActivity() ,
+                     ContactDetailDialogFragment.OnInputListener ,
+                     AddEditContactDialogFragment.OnInputListener {
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +49,21 @@ class MainActivity : AppCompatActivity() , ContactDetailDialogFragment.OnInputLi
         val newFragment = ContactDetailDialogFragment(contactModel, this)
 
         newFragment.show(fragmentManager,"ContactDetailDialogFragment")
+    }
+
+    override fun openAddContact(nextIndex: Int){
+        val fragmentManager = supportFragmentManager
+        val newFragment = AddEditContactDialogFragment(nextIndex)
+
+        newFragment.show (fragmentManager, "AddEditContactDialogFragment")
+    }
+
+    override fun addContact(contactModel: ContactModel) {
+        val navHostFragment: Fragment? =
+            supportFragmentManager.findFragmentById(R.id.fragmentContainerView)
+
+        val contactsFragment = navHostFragment?.childFragmentManager?.fragments?.find { it is ContactsFragment } as? ContactsFragment
+        contactsFragment?.addToList(contactModel) // criado por mim para complementar o que faltou da Anny
     }
 
     override fun deleteContact(contactModel: ContactModel) {

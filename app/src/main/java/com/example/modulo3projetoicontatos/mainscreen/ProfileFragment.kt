@@ -34,7 +34,7 @@ class ProfileFragment : Fragment() {
 
         binding.editButton.setOnClickListener{
             activity?.supportFragmentManager?.let{
-                val newFragment =                                                                                                                               AddEditContactDialogFragment(contactToEdit = profile, isEditProfile = true)
+                val newFragment =                                                                                                                                   AddEditContactDialogFragment(contactToEdit = profile, isEditProfile = true)
 
                 newFragment.show ( it, "AddEditContactDialogFragment" )
             }
