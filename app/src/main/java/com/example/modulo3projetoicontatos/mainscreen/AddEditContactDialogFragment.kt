@@ -23,7 +23,7 @@ class AddEditContactDialogFragment(
     private val isEditProfile: Boolean = false
 )  : DialogFragment(){
 
-    private val placeholder: String = "https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg "
+    private val placeholder: String = "https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg"
     private lateinit var binding: DialogFragmentAddEditContactBinding
     private var pickedImage: String? = null
 
@@ -43,19 +43,25 @@ class AddEditContactDialogFragment(
         binding = DialogFragmentAddEditContactBinding.inflate(inflater, container, false)
         setStyle(STYLE_NORMAL, R.style.FullScreenDialog)
 
+//        Toast.makeText(this@AddEditContactDialogFragment, "Dentro da AddEditContactDialogFragment", Toast.LENGTH_SHORT).show()
+        println(" dentro da AddEditContactDialogFragment ")
+
         contactToEdit?.let {
             binding.screenTitle.text = "Editar Contato"
-            binding.contactNameEditText.setText( it.name )
-            binding.relationshipTextView.setText ("Mae")
-            // binding.relationshipTextView.setText (it.relationship)
+            binding.contactNameEditText.setText(
+                it.name
+            )
+            binding.relationshipTextView.setText (it.relationship)
+
             binding.contactPhoneEditText.setText(it.phoneNumber)
             binding.contactInstagramEditText.setText(it.instagram)
             binding.contactFacebookEditText.setText(it.facebook)
-            binding.contactMailEditText.setText( it.email)
+            binding.contactMailEditText.setText(
+                it.email
+            )
         }
 
         if(isEditProfile){
-            println("dentro da AddEditContactDialogFragment EDITAR PERFIL")
             binding.screenTitle.text = "Editar Perfil"
             binding.contactRelationshipInputLayout.isVisible = false
         }
@@ -67,7 +73,7 @@ class AddEditContactDialogFragment(
             relationshipTypes = resources.getStringArray(R.array.relationship)// cria um array do xml com os relacionamentos (pai, mãe, irmão, etc.)
             val arrayAdapter = ArrayAdapter(
                 requireContext(),
-                android.R.layout.simple_dropdown_item_1line ,
+                android.R.layout.simple_list_item_1,
                 relationshipTypes
             )
             binding.relationshipTextView.setAdapter(arrayAdapter)
@@ -75,6 +81,7 @@ class AddEditContactDialogFragment(
             println("Erro na criação do relacionamento")
             println(relationshipTypes)
         }
+
 
 
         binding.contactImage.setOnClickListener {
@@ -87,10 +94,10 @@ class AddEditContactDialogFragment(
 
         binding.buttonConfirm.setOnClickListener {
             nextIndex?.let {
-                if (binding.contactPhoneEditText.text.isNullOrBlank() ||
-                    binding.contactMailEditText.text.isNullOrBlank() ||
+                if (binding.contactNameEditText.text.isNullOrBlank() || // modificadoPelaIA
+                    binding.contactPhoneEditText.text.isNullOrBlank() ||
                     binding.contactMailEditText.text.isNullOrBlank()
-                // || binding.relationshipTextView.text.isNullOrBlank()
+                //|| binding.relationshipTextView.text.isNullOrBlank()
                 ) {
                     Toast.makeText(
                         requireContext(),
@@ -100,65 +107,60 @@ class AddEditContactDialogFragment(
                     return@setOnClickListener
                 }
                 println(" dentro da AddEditContactDialogFragment na addContact ")
-                (activity as? OnInputListener)?.addContact( // modificadoPelaIA
+                (activity as? OnInputListener)?.addContact(
                     ContactModel(
                         nextIndex,
                         binding.contactNameEditText.text.toString(),
-                        "Pai", // binding.relationshipTextView.text.toString(),
+                        binding.relationshipTextView.text.toString(), //modificadoPelaIA
                         binding.contactPhoneEditText.text.toString(),
                         binding.contactInstagramEditText.text.toString(),
                         binding.contactFacebookEditText.text.toString(),
                         binding.contactMailEditText.text.toString(),
-                        pickedImage ?: placeholder // modificadoPelaIA
+                        pickedImage ?: placeholder// modificadoPelaIA
+
                     )
                 )
 
             }?: run{
                 contactToEdit?.let {
                     if(isEditProfile){
-//
-//                        (activity as? OnInputListener)?.updateProfile(
-//                            ContactModel(
-//
-//                                it.id
-//                                ,
-//                                binding.contactNameEditText.text.toString(),
-//                                "Pai",
-////binding.relationshipTextView.text.toString
-//                                (),
-//                                binding.contactPhoneEditText.text.toString(),
-//                                binding.contactInstagramEditText.text.toString(),
-//                                binding.contactFacebookEditText.text.toString(),
-//                                binding.contactMailEditText.text.toString(),
-//                                pickedImage ?: it.contactImage
-//                            )
-//                        )
+
+                        (activity as? OnInputListener)?.updateProfile(
+                            ContactModel(
+
+                                it.id
+                                ,
+                                binding.contactNameEditText.text.toString(),
+                                "Pai", //binding.relationshipTextView.text.toString (),
+                                binding.contactPhoneEditText.text.toString(),
+                                binding.contactInstagramEditText.text.toString(),
+                                binding.contactFacebookEditText.text.toString(),
+                                binding.contactMailEditText.text.toString(),
+                                pickedImage ?: it.contactImage
+                            )
+                        )
 
                     }else {
 
-//                        (activity as? OnInputListener)?.updateContact(
-//                            ContactModel(
-//
-//                                it.id
-//                                ,
-//                                binding.contactNameEditText.text.toString(),
-//                                "Pai",
-////binding.relationshipTextView.text.toString
-//                                (),
-//                                binding.contactPhoneEditText.text.toString(),
-//                                binding.contactInstagramEditText.text.toString(),
-//                                binding.contactFacebookEditText.text.toString(),
-//                                binding.contactMailEditText.text.toString(),
-//                                pickedImage ?: it.contactImage
-//                            )
-//                        )
-                    }
+                        (activity as? OnInputListener)?.updateContact(
+                            ContactModel(
 
+                                it.id
+                                ,
+                                binding.contactNameEditText.text.toString(),
+                                binding.relationshipTextView.text.toString(),
+                                binding.contactPhoneEditText.text.toString(),
+                                binding.contactInstagramEditText.text.toString(),
+                                binding.contactFacebookEditText.text.toString(),
+                                binding.contactMailEditText.text.toString(),
+                                pickedImage ?: it.contactImage
+                            )
+                        )
+                    }
                 }
             }
             dismiss()
         }
-
 
         return binding.root
     }
@@ -168,9 +170,10 @@ class AddEditContactDialogFragment(
     }
 
     interface OnInputListener {
+        fun openEditDialog(contactModel: ContactModel)
         fun openAddContact(nextIndex: Int)
         fun addContact(contactModel: ContactModel)
-//        fun updateContact(contactModel: ContactModel)
-//        fun updateProfile(contactModel: ContactModel)
+        fun updateContact(contactModel: ContactModel)
+        fun updateProfile(contactModel: ContactModel)
     }
 }

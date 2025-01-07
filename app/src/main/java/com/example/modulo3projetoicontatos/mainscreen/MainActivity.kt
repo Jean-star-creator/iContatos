@@ -17,9 +17,8 @@ import com.example.modulo3projetoicontatos.ContactModel
 import com.example.modulo3projetoicontatos.R
 import com.example.modulo3projetoicontatos.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() ,
-                     ContactDetailDialogFragment.OnInputListener ,
-                     AddEditContactDialogFragment.OnInputListener {
+class MainActivity : AppCompatActivity(), ContactDetailDialogFragment.OnInputListener, AddEditContactDialogFragment.OnInputListener {
+
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,21 +50,6 @@ class MainActivity : AppCompatActivity() ,
         newFragment.show(fragmentManager,"ContactDetailDialogFragment")
     }
 
-    override fun openAddContact(nextIndex: Int){
-        val fragmentManager = supportFragmentManager
-        val newFragment = AddEditContactDialogFragment(nextIndex)
-
-        newFragment.show (fragmentManager, "AddEditContactDialogFragment")
-    }
-
-    override fun addContact(contactModel: ContactModel) {
-        val navHostFragment: Fragment? =
-            supportFragmentManager.findFragmentById(R.id.fragmentContainerView)
-
-        val contactsFragment = navHostFragment?.childFragmentManager?.fragments?.find { it is ContactsFragment } as? ContactsFragment
-        contactsFragment?.addToList(contactModel) // criado por mim para complementar o que faltou da Anny
-    }
-
     override fun deleteContact(contactModel: ContactModel) {
         // na MainActivity eu não tenho o FragmentContacts, logo, tenho que buscá-lo
         val navHostFragment: Fragment? = supportFragmentManager.findFragmentById(R.id.fragmentContainerView)
@@ -81,7 +65,7 @@ class MainActivity : AppCompatActivity() ,
         try {
             val intent = Intent(Intent.ACTION_SENDTO)
 
-            intent.data = Uri.parse("mailto:$link")
+            intent.data = Uri.parse("mailto:link")
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK) // isso é pra abrir em uma nova activity e não substituir a que estamos
             startActivity(intent)
         }catch (ex: ActivityNotFoundException){
@@ -95,33 +79,76 @@ class MainActivity : AppCompatActivity() ,
 
     override fun dialPhone(phone: String?) {
         // Faz abertura da intent de discagem, onde através da "ACTION_DIAL" o android busca por um app que possua essa intent para fazer a discagem
-        val number = Uri.parse("tel:$phone")
+        val number = Uri.parse("tel:phone")
         val callIntent = Intent(Intent.ACTION_DIAL, number)
         startActivity(callIntent)
     }
 
     override fun openInstagram(userName: String?) {
-        // Aqui abriremos uma ACTION_VIEW, procuraremos apps que tenham pacote com o nome "com.instagram.android" que é o nome do pacote do instagram no android
-
+        // Aqui abriremos uma ACTION_VIEW, procuraremos apps que tenham pacote com o nome " com.instagram.android" que é o nome do pacote do instagram no android"
         val uri = Uri.parse(" https://instagram.com/_u/$userName")
-        val instagramIntent = Intent(Intent.ACTION_VIEW, uri )
+            val instagramIntent = Intent(Intent.ACTION_VIEW, uri )
 
         instagramIntent.setPackage(" com.instagram.android")
 
-        try {
-            /* Vai tentar abrir para o perfil do user, não tendo ele, abre o padrão do Instagram
-            Se o app do instagram não estiver instalado, abre em uma WEB VIEW mesmo
-             */
-            startActivity(instagramIntent)
-        }catch (ex: ActivityNotFoundException){
-            startActivity(
-                Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse("https://instagram.com/$userName")
+            try {
+                /* Vai tentar abrir para o perfil do user, não tendo ele, abre o padrão do Instagram
+                Se o app do instagram não estiver instalado, abre em uma WEB VIEW mesmo
+                 */
+                startActivity(instagramIntent)
+            }catch (ex: ActivityNotFoundException){
+                startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse(" https://instagram.com/$userName ")
+                        )
                     )
-                )
-        }
+            }
 
     }
 
+
+    /*IMplementando mudanças pra fazer a parte de edicção funcionar, parte que ela não gravou o vídeo */
+
+    override fun openEditDialog(contactModel: ContactModel){
+        val fragmentManager = supportFragmentManager
+        val newFragment = AddEditContactDialogFragment(contactToEdit = contactModel)
+
+        newFragment.show(fragmentManager, "AddEditContactDialogFragment")
+    }
+
+
+    override fun openAddContact(nextIndex: Int){
+        val fragmentManager = supportFragmentManager
+        val newFragment = AddEditContactDialogFragment(nextIndex = nextIndex) // modificadoPelaIA
+
+        newFragment.show(fragmentManager, "AddEditContactDialogFragment")
+    }
+
+    override fun addContact(contactModel: ContactModel) {
+        val navHostFragment: Fragment? =
+            supportFragmentManager.findFragmentById(R.id.fragmentContainerView)
+
+        val contactsFragment = navHostFragment?.childFragmentManager?.fragments?.find { it is ContactsFragment } as? ContactsFragment
+        contactsFragment?.addToList(contactModel)
+    }
+
+    override fun updateContact(contactModel: ContactModel) {
+        val navHostFragment: Fragment? =
+            supportFragmentManager.findFragmentById(R.id.fragmentContainerView)
+
+        val contactsFragment = navHostFragment?.childFragmentManager?.fragments?.find { it is ContactsFragment } as? ContactsFragment
+        contactsFragment?.updateContact(contactModel)
+
+        val contactDetailFragment = supportFragmentManager.fragments.find { it is ContactDetailDialogFragment && it.isVisible } as? ContactDetailDialogFragment
+        contactDetailFragment?.updateContact(contactModel)  // modificadoPelaIA
+    }
+
+    override fun updateProfile(contactModel: ContactModel) {
+        val navHostFragment: Fragment? =
+            supportFragmentManager.findFragmentById(R.id.fragmentContainerView)
+
+        val profileFragment = navHostFragment?.childFragmentManager?.fragments?.find { it is ProfileFragment } as? ProfileFragment
+        profileFragment?.updateProfile(contactModel)
+    }
 }

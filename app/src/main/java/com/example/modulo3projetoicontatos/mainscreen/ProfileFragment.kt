@@ -24,6 +24,7 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        println(" dentro da ProfileFragment ")
         binding = FragmentProfileBinding.inflate(inflater, container, false)
 
         // Recuperando o Bundle com o profile salvo
@@ -34,9 +35,9 @@ class ProfileFragment : Fragment() {
 
         binding.editButton.setOnClickListener{
             activity?.supportFragmentManager?.let{
-                val newFragment =                                                                                                                                   AddEditContactDialogFragment(contactToEdit = profile, isEditProfile = true)
+                val newFragment = AddEditContactDialogFragment(contactToEdit = profile, isEditProfile = true)
 
-                newFragment.show ( it, "AddEditContactDialogFragment" )
+                newFragment.show( it, "AddEditContactDialogFragment" )
             }
         }
         bindProfile(profile )
@@ -47,6 +48,7 @@ class ProfileFragment : Fragment() {
     fun updateProfile(contactModel: ContactModel) {
         profile = contactModel
         bindProfile(contactModel)
+        println(" dentro da updateProfile na AddEditContactDialogFragment ")
     }
 
     private fun bindProfile(contactModel: ContactModel) {
@@ -64,9 +66,9 @@ class ProfileFragment : Fragment() {
     }
 
     //    Quando o profileFragment estiver sendo destruído salvar toda a informação do profile, como Serializable, no Bundle
-//    override fun onSaveInstanceState(outState: Bundle) {
-//        super.onSaveInstanceState(outState)
-//        outState.putSerializable("profile", profile)
-//    }
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putSerializable("profile", profile)
+    }
 
 }

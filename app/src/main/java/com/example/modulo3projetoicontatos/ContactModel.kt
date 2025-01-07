@@ -1,5 +1,7 @@
 package com.example.modulo3projetoicontatos
 
+import java.io.Serializable
+
 data class ContactModel (
     val id: Int,
     val name: String,
@@ -10,4 +12,4 @@ data class ContactModel (
     val email: String? = null,
     val contactImage: String? = null,
 
-)
+) : Serializable

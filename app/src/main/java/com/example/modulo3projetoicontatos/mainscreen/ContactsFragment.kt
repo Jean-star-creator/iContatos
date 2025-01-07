@@ -13,6 +13,7 @@ import com.example.modulo3projetoicontatos.R
 import com.example.modulo3projetoicontatos.databinding.FragmentContactsBinding
 
 class ContactsFragment : Fragment() {
+
     private lateinit var binding: FragmentContactsBinding
     private lateinit var adapter: ContactsAdapter
 
@@ -23,21 +24,35 @@ class ContactsFragment : Fragment() {
             0,
             "Paula",
             "Imão/Irmã",
-            "+353 83 1387243",
-            email = "mail@gmail.com ",
-            contactImage = "https://randomuser.me/api/portraits/women/23.jpg",
-            instagram = "brunogermano3"
-        ),
-
-        ContactModel(
-            3,
-            "Jean",
-            "Amigo",
             "999485883",
             email = "mail@gmail.com",
-            contactImage = "https://randomuser.me/api/portraits/men/14.jpg",
-            instagram = "ibsenjean"
-
+            contactImage = "https://randomuser.me/api/portraits/women/23.jpg",
+            instagram = "instagram"
+        ),
+        ContactModel(
+            1,
+            "Ricardo",
+            "Pai/Mãe",
+            "999485883",
+            email = "mail@gmail.com",
+            contactImage = "https://randomuser.me/api/portraits/men/54.jpg",
+            instagram = "brunogermano3"
+        ),
+        ContactModel(
+            2,
+            "Patrícia",
+            "Pai/Mãe",
+            "999485883",
+            email = "mail@gmail.com",
+                    contactImage = "https://randomuser.me/api/portraits/women/33.jpg"
+        ),
+        ContactModel(
+            3,
+            "Carla",
+            "Pai/Mãe",
+            "999485883",
+            email = "mail@gmail.com",
+                    contactImage = "https://randomuser.me/api/portraits/women/20.jpg"
         ),
         ContactModel(
             4,
@@ -45,30 +60,30 @@ class ContactsFragment : Fragment() {
             "Amigo",
             "999485883",
             email = "mail@gmail.com",
-            contactImage = "https://randomuser.me/api/portraits/men/34.jpg"
+                    contactImage = "https://randomuser.me/api/portraits/men/14.jpg"
         ),
-
         ContactModel(
             5,
-            "Ana",
-            "Amigo",
+            "Vanuza",
+            "Pai/Mãe",
             "999485883",
             email = "mail@gmail.com",
-            contactImage = "https://randomuser.me/api/portraits/women/44.jpg"
+                    contactImage = "https://randomuser.me/api/portraits/women/87.jpg"
         ),
-
         ContactModel(
-            6,
-            "Jean Gray",
-            "Amigo",
+            7,
+            "Luiza",
+            "Pai/Mãe",
             "999485883",
             email = "mail@gmail.com",
-            contactImage = "https://randomuser.me/api/portraits/women/20.jpg"
+                    contactImage = "https://randomuser.me/api/portraits/women/50.jpg"
         )
+
     )
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
@@ -76,7 +91,7 @@ class ContactsFragment : Fragment() {
 
         originalContacts = contacts
 
-        adapter = ContactsAdapter(contacts, Glide.with(this), originalContacts ,activity as ContactDetailDialogFragment.OnInputListener  )
+        adapter = ContactsAdapter( contacts, Glide.with(this), originalContacts, activity as ContactDetailDialogFragment.OnInputListener )
 
         binding.contactsRecyclerView.adapter = adapter
         // adicionando o divisor de decoração na vertical
@@ -98,12 +113,16 @@ class ContactsFragment : Fragment() {
         } )
 
         binding.floatingAddButton.setOnClickListener{
-            (activity as? AddEditContactDialogFragment.OnInputListener)?.openAddContact(contacts.size) // modificadoPelaIA
-        }
+            (activity as? MainActivity)?.openAddContact( contacts.size ) // modificadoPelaIA
+        }// ultima versoa dada pela iA
+
+//        binding.floatingAddButton.setOnClickListener{
+////            addToList() // eu bruno coloquei o método errado aqui primeiro camo o fragment para inserir o s dados., como na inha abaixo
+//            (activity as? AddEditContactDialogFragment.OnInputListener)?.openAddContact(contacts.size) // modificadoPelaIA
+//        } // versao dada pela IA que testei e funcionou
 
         return binding.root
     }
-
 
     fun deleteContact(contactModel: ContactModel) {
         contacts.remove(contactModel)
@@ -111,11 +130,28 @@ class ContactsFragment : Fragment() {
     }
 
     // EU implementei para cria o novo contato
-    fun addToList(contactModel: ContactModel) { // modificadoPelaIA
+    fun addToList(contactModel: ContactModel) {
         contacts.add(contactModel)
         adapter.notifyDataSetChanged() // modificadoPelaIA
     }
 
-   
+    fun updateContact(contactModel: ContactModel) {
+        // 1. Encontra o índice do objeto na lista baseado no ID
+        val indexToUpdate = contacts.indexOfFirst {
+            it.id== contactModel.id
+        }
 
+        // 2. Atualiza o objeto na lista, se encontrado
+        if (indexToUpdate != -1) {
+            contacts[indexToUpdate] = contactModel
+            adapter.notifyItemChanged(indexToUpdate) // modificadoPelaIA
+        }
+
+        /*
+
+        // Para verificar a atualização
+        println("Lista de contatos após a atualização dos contacts.forEach { println(it) }
+
+         */
+    }
 }
