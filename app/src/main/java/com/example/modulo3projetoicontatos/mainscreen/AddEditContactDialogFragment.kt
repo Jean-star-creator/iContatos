@@ -64,6 +64,8 @@ class AddEditContactDialogFragment(
         if(isEditProfile){
             binding.screenTitle.text = "Editar Perfil"
             binding.contactRelationshipInputLayout.isVisible = false
+        }else{
+            binding.screenTitle.text = "Adicinar Contato"
         }
 
         Glide.with( this).load( contactToEdit?.contactImage ?: placeholder).into(binding.contactImage)
@@ -96,8 +98,8 @@ class AddEditContactDialogFragment(
             nextIndex?.let {
                 if (binding.contactNameEditText.text.isNullOrBlank() || // modificadoPelaIA
                     binding.contactPhoneEditText.text.isNullOrBlank() ||
-                    binding.contactMailEditText.text.isNullOrBlank()
-                //|| binding.relationshipTextView.text.isNullOrBlank()
+                    binding.contactMailEditText.text.isNullOrBlank()  ||
+                    binding.relationshipTextView.text.isNullOrBlank()
                 ) {
                     Toast.makeText(
                         requireContext(),
@@ -131,7 +133,6 @@ class AddEditContactDialogFragment(
                                 it.id
                                 ,
                                 binding.contactNameEditText.text.toString(),
-                                "Pai", //binding.relationshipTextView.text.toString (),
                                 binding.contactPhoneEditText.text.toString(),
                                 binding.contactInstagramEditText.text.toString(),
                                 binding.contactFacebookEditText.text.toString(),
