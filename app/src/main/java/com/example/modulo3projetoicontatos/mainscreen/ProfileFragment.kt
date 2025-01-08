@@ -53,13 +53,11 @@ class ProfileFragment : Fragment() {
 
     private fun bindProfile(contactModel: ContactModel) {
         // integra os dados com as Views
-        binding.contactName.text =
-            contactModel.name
+        binding.contactName.text = contactModel.name
 
-        binding.infoMail.setInfoValue(
-            contactModel.email
-        )
+        binding.infoMail.setInfoValue(contactModel.email)
         binding.infoFacebook.setInfoValue(contactModel.facebook)
+        binding.infoInstagram.setInfoValue(contactModel.instagram)
         binding.infoPhone.setInfoValue(contactModel.phoneNumber)
 
         Glide.with(this).load(contactModel.contactImage).into(binding.contactImage)

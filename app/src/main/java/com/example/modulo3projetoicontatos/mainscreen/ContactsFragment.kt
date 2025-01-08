@@ -25,9 +25,10 @@ class ContactsFragment : Fragment() {
             "Paula",
             "Imão/Irmã",
             "999485883",
-            email = "mail@gmail.com",
+            email = "paula@gmail.com",
+            facebook = "paulafacebook",
             contactImage = "https://randomuser.me/api/portraits/women/23.jpg",
-            instagram = "instagram"
+            instagram = "instagramdapaula"
         ),
         ContactModel(
             1,
@@ -37,6 +38,7 @@ class ContactsFragment : Fragment() {
             email = "mail@gmail.com",
             contactImage = "https://randomuser.me/api/portraits/men/54.jpg",
             instagram = "brunogermano3"
+
         ),
         ContactModel(
             2,
@@ -44,7 +46,7 @@ class ContactsFragment : Fragment() {
             "Pai/Mãe",
             "999485883",
             email = "mail@gmail.com",
-                    contactImage = "https://randomuser.me/api/portraits/women/33.jpg"
+            contactImage = "https://randomuser.me/api/portraits/women/33.jpg"
         ),
         ContactModel(
             3,
@@ -52,7 +54,7 @@ class ContactsFragment : Fragment() {
             "Pai/Mãe",
             "999485883",
             email = "mail@gmail.com",
-                    contactImage = "https://randomuser.me/api/portraits/women/20.jpg"
+            contactImage = "https://randomuser.me/api/portraits/women/20.jpg"
         ),
         ContactModel(
             4,
@@ -60,7 +62,7 @@ class ContactsFragment : Fragment() {
             "Amigo",
             "999485883",
             email = "mail@gmail.com",
-                    contactImage = "https://randomuser.me/api/portraits/men/14.jpg"
+            contactImage = "https://randomuser.me/api/portraits/men/14.jpg"
         ),
         ContactModel(
             5,
@@ -68,7 +70,7 @@ class ContactsFragment : Fragment() {
             "Pai/Mãe",
             "999485883",
             email = "mail@gmail.com",
-                    contactImage = "https://randomuser.me/api/portraits/women/87.jpg"
+            contactImage = "https://randomuser.me/api/portraits/women/87.jpg"
         ),
         ContactModel(
             7,
@@ -76,9 +78,18 @@ class ContactsFragment : Fragment() {
             "Pai/Mãe",
             "999485883",
             email = "mail@gmail.com",
-                    contactImage = "https://randomuser.me/api/portraits/women/50.jpg"
+            contactImage = "https://randomuser.me/api/portraits/women/50.jpg"
+        ),
+        ContactModel(
+            8,
+            "Fernada",
+            "Irmã",
+            "999",
+            "instagramdapaula",
+            "paulafacebook",
+            "fernada@gmail.com",
+            "https://randomuser.me/api/portraits/women/7.jpg"
         )
-
     )
 
     override fun onCreateView(

@@ -130,13 +130,13 @@ class AddEditContactDialogFragment(
                         (activity as? OnInputListener)?.updateProfile(
                             ContactModel(
 
-                                it.id
-                                ,
+                                it.id,
                                 binding.contactNameEditText.text.toString(),
+                                "",
                                 binding.contactPhoneEditText.text.toString(),
                                 binding.contactInstagramEditText.text.toString(),
                                 binding.contactFacebookEditText.text.toString(),
-                                binding.contactMailEditText.text.toString(),
+                                binding.contactMailEditText.text.toString() ,
                                 pickedImage ?: it.contactImage
                             )
                         )
